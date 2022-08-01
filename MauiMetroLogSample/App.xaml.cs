@@ -1,4 +1,6 @@
-﻿namespace MauiMetroLogSample;
+﻿using MetroLog.Maui;
+
+namespace MauiMetroLogSample;
 
 public partial class App : Application
 {
@@ -7,5 +9,9 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
-	}
+
+        LogController.InitializeNavigation(
+            page => MainPage!.Navigation.PushModalAsync(page),
+            () => MainPage!.Navigation.PopModalAsync());
+    }
 }

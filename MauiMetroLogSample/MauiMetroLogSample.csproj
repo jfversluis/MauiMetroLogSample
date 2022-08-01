@@ -48,4 +48,8 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="MetroLog.Maui" Version="2.0.1" />
+	</ItemGroup>
+
 </Project>

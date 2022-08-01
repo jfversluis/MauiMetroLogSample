@@ -1,12 +1,19 @@
-﻿namespace MauiMetroLogSample;
+﻿using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
+
+namespace MauiMetroLogSample;
 
 public partial class MainPage : ContentPage
 {
 	int count = 0;
+	ILogger<MainPage> _logger;
 
-	public MainPage()
+	public MainPage(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
+		BindingContext = new LogController();
+
+        _logger = logger;
 	}
 
 	private void OnCounterClicked(object sender, EventArgs e)
@@ -18,7 +25,10 @@ public partial class MainPage : ContentPage
 		else
 			CounterBtn.Text = $"Clicked {count} times";
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		_logger.LogInformation($"Button clicked. Count: {count}");
+
+
+        SemanticScreenReader.Announce(CounterBtn.Text);
 	}
 }
 
